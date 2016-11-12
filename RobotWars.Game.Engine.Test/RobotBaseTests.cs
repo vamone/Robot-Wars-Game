@@ -1,9 +1,8 @@
 ﻿using System;
 
-using RobotWars.Game;
 using Xunit;
 
-namespace RobotWars.Test
+namespace RobotWars.Game.Engine.Test
 {
     public class RobotBaseTests
     {

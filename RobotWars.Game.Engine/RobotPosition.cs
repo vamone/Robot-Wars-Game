@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RobotWars.Game
+namespace RobotWars.Game.Engine
 {
     [DebuggerDisplay("X = {X}, Y = {Y}, CompassPointer = {CompassPointer}")]
     public class RobotPosition

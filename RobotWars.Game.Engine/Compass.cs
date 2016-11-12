@@ -1,4 +1,4 @@
-﻿namespace RobotWars.Game
+﻿namespace RobotWars.Game.Engine
 {
     public class Compass
     {

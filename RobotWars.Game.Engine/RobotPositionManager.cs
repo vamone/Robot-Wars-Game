@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RobotWars.Game
+namespace RobotWars.Game.Engine
 {
     public static class RobotPositionManager
     {

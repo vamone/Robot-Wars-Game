@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RobotWars.Game
+namespace RobotWars.Game.Engine
 {
     public class RobotPenaltyRecord
     {
