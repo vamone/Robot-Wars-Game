@@ -1,10 +1,11 @@
 ﻿using System;
+
 using RobotWars.Game;
 using Xunit;
 
-namespace BoardEx.RobotWars.Test
+namespace RobotWars.Test
 {
-    public class RobotTests
+    public class RobotBaseTests
     {
         private static readonly RobotWarsArena FightArena = new RobotWarsArena();
 
