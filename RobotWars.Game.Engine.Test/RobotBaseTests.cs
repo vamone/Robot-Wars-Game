@@ -26,7 +26,7 @@ namespace RobotWars.Game.Engine.Test
             //Assert
             Assert.Equal(1, storm.Position.X);
             Assert.Equal(1, storm.Position.Y);
-            Assert.Equal(3, storm.HitCount);
+            Assert.Equal(3, storm.CollisionCount);
             Assert.Equal(0, storm.PenaltyRecord.PenaltiesCount);
             Assert.Equal(Compass.CompassSides.North, storm.Position.CompassPointer);
         }

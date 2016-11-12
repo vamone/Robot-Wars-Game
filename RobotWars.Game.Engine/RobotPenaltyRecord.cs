@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace RobotWars.Game.Engine
 {
+    [DebuggerDisplay("PenaltiesCount = {PenaltiesCount}, PositionsCount = {Positions.Count}")]
     public class RobotPenaltyRecord
     {
         public RobotPenaltyRecord()

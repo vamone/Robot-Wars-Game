@@ -39,7 +39,7 @@ namespace RobotWars.Game.Engine
 
         public RobotWarsArena FightArena { get; internal set; }
 
-        public int HitCount { get; protected set; }
+        public int CollisionCount { get; protected set; }
 
         public void MoveForvard()
         {
@@ -58,7 +58,7 @@ namespace RobotWars.Game.Engine
 
             if (isPositionInUserByOtherRobot)
             {
-                this.HitCount++;
+                this.CollisionCount++;
 
                 return;
             }

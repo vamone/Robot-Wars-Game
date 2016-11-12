@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace RobotWars.Game.Engine
 {
+    [DebuggerDisplay("MinX = {MinX}, MinY = {MinY}, MaxX = {MaxX}, MaxY = {MaxY}, ParticipatedRobotsCount = {ParticipatedRobots.Count}")]
     public class RobotWarsArena
     {
         const int DefaultX = 5;
