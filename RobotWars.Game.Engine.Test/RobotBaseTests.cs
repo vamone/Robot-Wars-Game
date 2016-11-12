@@ -6,23 +6,36 @@ namespace RobotWars.Game.Engine.Test
 {
     public class RobotBaseTests
     {
-        private static readonly RobotWarsArena FightArena = new RobotWarsArena();
+        static readonly RobotWarsArena FightArena = new RobotWarsArena();
 
         [Fact]
-        public void Ctor_NullRobotWarsArena_ArgumentNullException()
+        public void TwoRobots_CollitionOnArena_ReturnOneRobotOnPreviosPosition()
         {
-            //Arrange & Act
-            Action storm = () => new Storm(null, 0, 0, Compass.CompassSides.East);
+            //Arrange
+            var storm = new Storm(1, 1, Compass.CompassSides.North);
+            var razer = new Razer(1, 2, Compass.CompassSides.North);
+
+            //Act
+            FightArena.RobotsEnterArena(storm, razer);
+
+            //storm.TurnRight();
+            storm.MoveForvard();
+            storm.MoveForvard();
+            storm.MoveForvard();
 
             //Assert
-            Assert.Throws<ArgumentNullException>(storm);
+            Assert.Equal(1, storm.Position.X);
+            Assert.Equal(1, storm.Position.Y);
+            Assert.Equal(3, storm.HitCount);
+            Assert.Equal(0, storm.PenaltyRecord.PenaltiesCount);
+            Assert.Equal(Compass.CompassSides.North, storm.Position.CompassPointer);
         }
 
         [Fact]
         public void Ctor_XLessThanZiro_ArgumentOutOfRange()
         {
             //Arrange & Act
-            Action storm = () => new Storm(FightArena, -1, 0, Compass.CompassSides.East);
+            Action storm = () => new Storm(-1, 0, Compass.CompassSides.East, FightArena);
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(storm);
@@ -32,7 +45,7 @@ namespace RobotWars.Game.Engine.Test
         public void Ctor_YLessThanZiro_ArgumentOutOfRange()
         {
             //Arrange & Act
-            Action storm = () => new Storm(FightArena, 0, -1, Compass.CompassSides.East);
+            Action storm = () => new Storm(0, -1, Compass.CompassSides.East, FightArena);
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(storm);
@@ -42,7 +55,7 @@ namespace RobotWars.Game.Engine.Test
         public void StormRobot_PenaltiesOnPMaxositionLineY_PenaltiesCount()
         {
             //Arrange 
-            var storm = new Storm(FightArena, 4, 4, Compass.CompassSides.North);
+            var storm = new Storm(4, 4, Compass.CompassSides.North, FightArena);
 
             //Act
             storm.MoveForvard();
@@ -61,7 +74,7 @@ namespace RobotWars.Game.Engine.Test
         public void StormRobot_PenaltiesOnMinPositionLineY_PenaltiesCount()
         {
             //Arrange 
-            var storm = new Storm(FightArena, 4, 1, Compass.CompassSides.South);
+            var storm = new Storm(4, 1, Compass.CompassSides.South, FightArena);
 
             //Act
             storm.MoveForvard();
@@ -84,7 +97,7 @@ namespace RobotWars.Game.Engine.Test
         public void StormRobot_PenaltiesOnMaxPositionLineX_PenaltiesCount()
         {
             //Arrange 
-            var storm = new Storm(FightArena, 4, 3, Compass.CompassSides.East);
+            var storm = new Storm(4, 3, Compass.CompassSides.East, FightArena);
 
             //Act
             storm.MoveForvard();
@@ -104,7 +117,7 @@ namespace RobotWars.Game.Engine.Test
         public void StormRobot_PenaltiesOnMinPositionLineX_PenaltiesCount()
         {
             //Arrange 
-            var storm = new Storm(FightArena, 2, 3, Compass.CompassSides.West);
+            var storm = new Storm(2, 3, Compass.CompassSides.West, FightArena);
 
             //Act
             storm.MoveForvard();
@@ -129,7 +142,7 @@ namespace RobotWars.Game.Engine.Test
         public void StormRobot_MoveAroundBoundary_PenaltiesCount()
         {
             //Arrange 
-            var storm = new Storm(FightArena, 0, 0, Compass.CompassSides.North);
+            var storm = new Storm(0, 0, Compass.CompassSides.North, FightArena);
 
             //Act
             storm.MoveForvard();
@@ -173,7 +186,7 @@ namespace RobotWars.Game.Engine.Test
         public void RazerRobot_Scenario_1()
         {
             //Arrange
-            var razer = new Razer(FightArena, 0, 2, Compass.CompassSides.East);
+            var razer = new Razer(0, 2, Compass.CompassSides.East, FightArena);
 
             //Act
             //MLMRMMMRMMRR
@@ -201,7 +214,7 @@ namespace RobotWars.Game.Engine.Test
         public void RazerRobot_Scenario_2()
         {
             //Arrange
-            var robot = new Razer(FightArena, 4, 4, Compass.CompassSides.South);
+            var robot = new Razer(4, 4, Compass.CompassSides.South, FightArena);
 
             //Act
             //LMLLMMLMMMRMM
@@ -230,7 +243,7 @@ namespace RobotWars.Game.Engine.Test
         public void RazerRobot_Scenario_3()
         {
             //Arrange
-            var robot = new Razer(FightArena, 2, 2, Compass.CompassSides.West);
+            var robot = new Razer(2, 2, Compass.CompassSides.West, FightArena);
 
             //Act
             //MLMLMLM RMRMRMRM
@@ -261,7 +274,7 @@ namespace RobotWars.Game.Engine.Test
         public void RazerRobot_Scenario_4()
         {
             //Arrange
-            var robot = new Razer(FightArena, 1, 3, Compass.CompassSides.North);
+            var robot = new Razer(1, 3, Compass.CompassSides.North, FightArena);
 
             //Act
             //MMLMMLMMMMM
@@ -291,7 +304,7 @@ namespace RobotWars.Game.Engine.Test
         public void RazerRobot_Scenario_4_UppSideDown()
         {
             //Arrange
-            var robot = new Razer(FightArena, 3, 1, Compass.CompassSides.South);
+            var robot = new Razer(3, 1, Compass.CompassSides.South, FightArena);
 
             //Act
             robot.MoveForvard();

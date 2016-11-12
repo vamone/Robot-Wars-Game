@@ -2,9 +2,9 @@
 {
     public class Storm : RobotBase
     {
-        public Storm(RobotWarsArena fightArena, int startPositionLineX, int startPositonLineY,
-            Compass.CompassSides startCompassPointer)
-            : base(fightArena, startPositionLineX, startPositonLineY, startCompassPointer)
+        public Storm(int startPositionLineX, int startPositonLineY,
+            Compass.CompassSides startCompassPointer, RobotWarsArena fightArena = null)
+            : base(startPositionLineX, startPositonLineY, startCompassPointer, fightArena)
         {
         }
     }

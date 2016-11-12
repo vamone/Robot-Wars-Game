@@ -2,9 +2,9 @@
 {
     public class Razer : RobotBase
     {
-        public Razer(RobotWarsArena fightArena, int startPositionLineX, int startPositonLineY,
-            Compass.CompassSides startCompassPointer)
-            : base(fightArena, startPositionLineX, startPositonLineY, startCompassPointer)
+        public Razer(int startPositionLineX, int startPositonLineY,
+            Compass.CompassSides startCompassPointer, RobotWarsArena fightArena = null)
+            : base(startPositionLineX, startPositonLineY, startCompassPointer, fightArena)
         {
         }
     }
